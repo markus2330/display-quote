@@ -1,16 +1,15 @@
 #include <iostream>
 #include <archive.hpp>
 
+#include <stdlib.h>
+#include <time.h>
+
 int main()
 {
-	std::cout << "Usage: dfc [profile]" << std::endl << std::endl;
-	Archive a("/tmp/test.txt");
+	Archive a("/usr/share/doc/display-dhammapada/dhammapada-english-transl.txt");
 
-	std::cout << "Parsing finished" << std::endl << std::endl;
+	srand (time(0));
+	int r = 1+(int) ((double)a.quotes.size()*rand()/(RAND_MAX+1.0));
 
-	for (int i=0; i<a.quotes.size(); ++i)
-	{
-		std::cout << i+1 << ": " << a.quotes[i]
-			<< std::endl << std::endl;
-	}
+	std::cout << a.quotes[r] << std::endl;
 }

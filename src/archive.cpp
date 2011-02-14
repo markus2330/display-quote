@@ -13,11 +13,11 @@ Archive::Archive(std::string filename)
 	quotes.push_back("");
 
 	string current;
+
 	while (getline (ifs, current))
 	{
 		vector<int> markers;
 
-		cout << "now parsing: " << current << endl;
 		string::reverse_iterator it = current.rbegin();
 		for(; it != current.rend();)
 		{
@@ -40,9 +40,6 @@ Archive::Archive(std::string filename)
 			markers.push_back (number);
 		}
 		current.erase(it.base(), current.end());
-		cout << "current now is: " << current << endl;;
-		cout << "markers found: " << endl;
-		for (int i=0; i<markers.size(); ++i) cout << markers[i] << " ";
 
 		if (!markers.empty())
 		{
