@@ -1,0 +1,67 @@
+== Introduction ==
+
+display-from-collection (short: dfc) prints a
+text from a configured collection.
+
+Its main differences to display-dhammapada and fortune are:
+
+1.) Supports various database formats to be displayed.
+
+2.) Supports a system, user and profiled-based
+configuring of what
+files are accounted and to which percentage instead of
+commandline switches.
+
+3.) A C++ shared library allows the functionality
+to be used in every program without calling
+display-from-collection externally. This is possible
+because the configuration does not happen with
+commandline switches.
+
+
+== Configuration ==
+
+The configuration is below:
+
+/sw/apps/dfc/
+
+in given profiles
+the default profile is default
+it is possible to merge various profiles
+not used profiles are completely ignored
+
+The profiles can be useful to distuingish between
+private collections, offensive collections and
+collections for public quoting.
+
+in given entries
+for every file you must write an entry
+
+for every entry you can configure:
+1.) The name of the file to be used
+/sw/apps/dfc/profile/entry/path (type:path)
+
+2.) How often it should be picked (a larger number and it will be picked
+	more often)
+/sw/apps/dfc/profile/entry/contingency (type:integer)
+
+3.) The format of the database: (dhammapada|quote)
+/sw/apps/dfc/profile/entry/format (type:enum)
+
+== Databases ==
+
+Plugins do the actual work to read a database.
+They will be called for reading the actual
+phrase out of the database.
+
+Currently supported are:
+dhammapada
+Searches for a paragraph with a number in the end.
+Is fair without having an index.
+
+unfair-quote
+Jumps to any offset and reads the next entry.
+Longer quotes have a higher chance to be read.
+You can compensate that fact by inserting fill
+characters in the database
+
