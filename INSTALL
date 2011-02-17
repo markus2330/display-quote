@@ -1,0 +1,16 @@
+you need following packages:
+ build-essential
+ cmake
+
+then you need to do:
+ mkdir build
+ cd build
+ cmake ..
+ make
+ cpack
+
+then install the
+ dfc-0.1-Debian-amd64.deb
+package. For another architecture,
+build system modify CMakeLists.txt
+in the root directory.
