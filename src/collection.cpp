@@ -7,18 +7,22 @@
 #include <time.h>
 
 Collection::Collection()
-{}
+{
+	archive = new Archive ("/usr/share/doc/display-dhammapada/dhammapada-english-transl.txt");
+}
 
 Collection::~Collection()
-{}
+{
+	delete archive;
+}
 
 void Collection::getRandomQuote(std::ostream &os)
 {
-	Archive a("/usr/share/doc/display-dhammapada/dhammapada-english-transl.txt");
 
 	srand (time(0));
 
-	int r = (int) ((double)a.size()*rand()/RAND_MAX);
+	/*Erzeugt eine Zahl zwischen 0 und size-1*/
+	int r = (int) ((double)archive->size()*rand()/RAND_MAX);
 
-	os << a[r];
+	os << archive->operator[](r);
 }

@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+class Archive;
+
 /**The public interface to access a collection
   *of archives.*/
 class Collection
@@ -18,7 +20,7 @@ public:
 	  *and output it to the given stream.*/
 	void getRandomQuote(std::ostream &os);
 private:
-	//std::vector<Archive *> archives;
+	Archive * archive;
 };
 
 #endif
