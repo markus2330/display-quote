@@ -9,28 +9,24 @@ class Archive
 public:
 	/**Loads archive (positions)
 	  *and make everything ready
-	  *for random access */
-	Archive(std::string filename);
+	  *for random access.
+	  *TODO: should be map<string> */
+	// Archive(std::string filename);
 
 	/**If any setup needs to be
 	  *undone, do it here */
-	~Archive();
+	virtual ~Archive() = 0;
 
 	/**Return a const reference to
 	  *a quote by a given index.
 	  *The index is a number from 0
 	  *to size()-1.*/
-	const std::string& operator [] (int index) const;
+	virtual const std::string& operator [] (int index) const = 0;
 
 	/**Return how many quotes
 	  *are available in the
 	  *Archive.*/
-	int size() const;
-
-private:
-	/**the underlying information
-	  *to access */
-	std::vector<std::string> quotes;
+	virtual int size() const = 0;
 };
 
 #endif
