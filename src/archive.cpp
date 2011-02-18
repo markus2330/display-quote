@@ -72,3 +72,13 @@ Archive::Archive(std::string filename)
 
 Archive::~Archive()
 {}
+
+const std::string& Archive::operator [] (int index) const
+{
+	return quotes[index];
+}
+
+int Archive::size() const
+{
+	return quotes.size();
+}
