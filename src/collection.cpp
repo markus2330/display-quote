@@ -3,6 +3,7 @@
 
 #include <archive.hpp>
 #include <quotes.hpp>
+#include <paragraph.hpp>
 #include <dhammapada.hpp>
 
 #include <stdlib.h>
@@ -16,9 +17,11 @@ Collection::Collection()
 
 	switch (r)
 	{
-	case 0: archive = new Quotes ("/home/markus/Info/quote");
+	case 0: archive = new Quotes ("/tmp/quotes.txt");
 		break;
-	case 1: archive = new Dhammapada ("/usr/share/doc/display-dhammapada/dhammapada-english-transl.txt");
+	case 1: archive = new Paragraph ("/tmp/paragraph.txt");
+		break;
+	case 2: archive = new Dhammapada ("/usr/share/doc/display-dhammapada/dhammapada-english-transl.txt");
 		break;
 	default: throw "no archive in that case";
 	}
