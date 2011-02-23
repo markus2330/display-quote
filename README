@@ -18,6 +18,21 @@ display-from-collection externally. This is possible
 because the configuration does not happen with
 commandline switches.
 
+
+== Compile ==
+
+Make sure that you have elektra and cmake installed.
+Use cmake as usual:
+
+ mkdir build
+ cd build
+ cmake ..
+ make
+ cpack
+
+and install the package.
+
+
 == Usage ==
 
  dfc
@@ -35,12 +50,15 @@ Allows you to output a quote from another profile.
 Allows you to add a new archive to one of the profiles
 for example:
 
- tool/dfc public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
+ dfc public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
 
 adds the archive with the name "dhamma" to the profile "public" using
 the type (of the database format) dhammapada.
 
 Note that currently the file name (path) must be absolute.
+Note that dfc currently is only able to add profiles to the
+user configuration.
+
 
 == Configuration ==
 
