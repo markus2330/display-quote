@@ -18,6 +18,29 @@ display-from-collection externally. This is possible
 because the configuration does not happen with
 commandline switches.
 
+== Usage ==
+
+ dfc
+
+The default output is one of the quotes of the default profile.
+
+
+ dfc <profile>
+
+Allows you to output a quote from another profile.
+
+
+ dfc <profile> <name of archive> <absolute file> <type of archive>
+
+Allows you to add a new archive to one of the profiles
+for example:
+
+ tool/dfc public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
+
+adds the archive with the name "dhamma" to the profile "public" using
+the type (of the database format) dhammapada.
+
+Note that currently the file name (path) must be absolute.
 
 == Configuration ==
 
@@ -31,8 +54,8 @@ it is possible to merge various profiles
 not used profiles are completely ignored
 
 The profiles can be useful to distuingish between
-private collections, offensive collections and
-collections for public quoting.
+private collections, offensive collections, private
+collections and collections for public quoting.
 
 in given entries
 for every file you must write an entry
@@ -46,7 +69,7 @@ for every entry you can configure:
 /sw/apps/dfc/profile/entry/contingency (type:integer)
 
 3.) The format of the database: (dhammapada|quote)
-/sw/apps/dfc/profile/entry/format (type:enum)
+/sw/apps/dfc/profile/entry/type (type:enum)
 
 == Databases ==
 
@@ -59,9 +82,9 @@ dhammapada
 Searches for a paragraph with a number in the end.
 Is fair without having an index.
 
-unfair-quote
-Jumps to any offset and reads the next entry.
-Longer quotes have a higher chance to be read.
-You can compensate that fact by inserting fill
-characters in the database
+quotes
+A line containing "%" and nothing else opens a new quote.
 
+paragraph
+Every paragraph is considered to be a quote.
+(An empty line starts a new quote.)

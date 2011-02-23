@@ -1,13 +1,11 @@
-#include <collection.hpp>
 #include <iostream>
+#include <memory>
 
-#include <archive.hpp>
-#include <quotes.hpp>
-#include <paragraph.hpp>
-#include <dhammapada.hpp>
+#include <collection.hpp>
+#include <factory.hpp>
 
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 
 #include <kdb>
 
@@ -27,39 +25,58 @@ Collection::Collection(std::string profile)
 
 	std::cout << "root key is: " << root.name() << std::endl;
 
+	Factory f;
+
 	config.rewind();
 	std::cout << "size of config: " << config.size() << std::endl;
 	kdb::Key k;
 	while (k = config.next())
 	{
-		if (root.isBelow(k))
-			std::cout << k.name() << " value: "
-				<< k.getString()
-				<< std::endl;
-	}
+		if (root.isDirectBelow(k))
+		{
+			kdb::Key path =
+				config.lookup (k.getName() + "/path");
+			if (!path) throw ("Archive without path found");
 
-	switch (r)
-	{
-	case 0: archive = new Quotes ("/tmp/quotes.txt");
-		break;
-	case 1: archive = new Paragraph ("/tmp/paragraph.txt");
-		break;
-	case 2: archive = new Dhammapada ("/usr/share/doc/display-dhammapada/dhammapada-english-transl.txt");
-		break;
-	default: throw "no archive in that case";
+			kdb::Key type =
+				config.lookup (k.getName() + "/type");
+			if (!type) throw ("Archive without type found");
+
+			std::auto_ptr<Archive> a =
+				f.get(type.getString(),
+				path.getString());
+			archives.push_back(a.release());
+			std::cout << "Create archive:"
+				<< " type: " << type.getString()
+				<< " path: " << path.getString()
+				<< std::endl;
+		}
 	}
 }
 
 Collection::~Collection()
 {
-	delete archive;
+	for (
+		std::vector<Archive*>::iterator it =
+		archives.begin();
+		it != archives.end();
+		it++)
+	{
+		delete *it;
+	}
+}
+
+/*Random number between 0 and number*/
+int random(int number)
+{
+	return ((double)number)*rand()/RAND_MAX;
 }
 
 void Collection::getRandomQuote(std::ostream &os)
 {
+	int a = random(archives.size());
 
-	/*Erzeugt eine Zahl zwischen 0 und size-1*/
-	int r = (int) ((double)archive->size()*rand()/RAND_MAX);
+	int r = random(archives[a]->size());
 
-	os << archive->operator[](r);
+	os << archives[a]->operator[](r);
 }

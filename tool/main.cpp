@@ -8,12 +8,14 @@ int main(int argc, char** argv)
 	if (argc == 1)
 	{
 		Collection c;
-		// c.getRandomQuote (std::cout);
-		// std::cout << std::endl;
+		c.getRandomQuote (std::cout);
+		std::cout << std::endl;
 	}
 	else if (argc == 2)
 	{
 		Collection c (argv[1]);
+		c.getRandomQuote (std::cout);
+		std::cout << std::endl;
 	}
 	else if (argc == 5)
 	{

@@ -2,6 +2,7 @@
 #define COLLECTION_HPP
 
 #include <iostream>
+#include <vector>
 
 class Archive;
 
@@ -20,7 +21,7 @@ public:
 	  *and output it to the given stream.*/
 	void getRandomQuote(std::ostream &os);
 private:
-	Archive * archive;
+	std::vector<Archive*> archives;
 };
 
 #endif
