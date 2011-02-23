@@ -15,11 +15,15 @@ Collection::Collection(std::string profile)
 
 	kdb::KDB kdb;
 
-	kdb::Key root("user/sw/dfc", KEY_END);
-	root += profile;
+	kdb::Key userroot("user/sw/dfc", KEY_END);
+	userroot += profile;
+
+	kdb::Key sysroot("system/sw/dfc", KEY_END);
+	sysroot += profile;
 
 	kdb::KeySet config;
-	kdb.get(config, root);
+	kdb.get(config, userroot);
+	kdb.get(config, sysroot);
 
 	Factory f;
 
@@ -27,7 +31,22 @@ Collection::Collection(std::string profile)
 	kdb::Key k;
 	while (k = config.next())
 	{
-		if (root.isDirectBelow(k))
+		if (userroot.isDirectBelow(k))
+		{
+			kdb::Key path =
+				config.lookup (k.getName() + "/path");
+			if (!path) throw ("Archive without path found");
+
+			kdb::Key type =
+				config.lookup (k.getName() + "/type");
+			if (!type) throw ("Archive without type found");
+
+			std::auto_ptr<Archive> a =
+				f.get(type.getString(),
+				path.getString());
+			archives.push_back(a.release());
+		}
+		else if (sysroot.isDirectBelow(k))
 		{
 			kdb::Key path =
 				config.lookup (k.getName() + "/path");
