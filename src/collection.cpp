@@ -13,8 +13,6 @@ Collection::Collection(std::string profile)
 {
 	srand (time(0));
 
-	int r = (int) ((double)3*rand()/RAND_MAX);
-
 	kdb::KDB kdb;
 
 	kdb::Key root("user/sw/dfc", KEY_END);
@@ -23,12 +21,9 @@ Collection::Collection(std::string profile)
 	kdb::KeySet config;
 	kdb.get(config, root);
 
-	std::cout << "root key is: " << root.name() << std::endl;
-
 	Factory f;
 
 	config.rewind();
-	std::cout << "size of config: " << config.size() << std::endl;
 	kdb::Key k;
 	while (k = config.next())
 	{
@@ -46,10 +41,6 @@ Collection::Collection(std::string profile)
 				f.get(type.getString(),
 				path.getString());
 			archives.push_back(a.release());
-			std::cout << "Create archive:"
-				<< " type: " << type.getString()
-				<< " path: " << path.getString()
-				<< std::endl;
 		}
 	}
 }

@@ -26,14 +26,6 @@ int main(int argc, char** argv)
 
 		kdb::KeySet config;
 		kdb.get (config, root);
-		config.rewind();
-		kdb::Key k;
-		while (k = config.next())
-		{
-			std::cout << k.name() << " value: "
-				<< k.getString()
-				<< std::endl;
-		}
 
 		if (!config.lookup(root))
 		{

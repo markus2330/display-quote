@@ -9,7 +9,6 @@ using namespace std;
 Dhammapada::Dhammapada(std::string filename)
 {
 	ifstream ifs (filename.c_str());
-	int posnr = 1;
 	quotes.push_back("");
 
 	string current;
@@ -23,7 +22,6 @@ Dhammapada::Dhammapada(std::string filename)
 		{
 			int number = 0;
 			int decpos = 1;
-			bool found = false;
 			while (*it >= '0' && *it <='9')
 			{
 				// we found a paragraph notation
