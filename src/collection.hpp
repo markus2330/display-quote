@@ -11,7 +11,7 @@ class Collection
 {
 public:
 	/**Open access to various archives.*/
-	Collection();
+	Collection(std::string profile = "default");
 
 	/**Close the opened archives and delete them.*/
 	~Collection();

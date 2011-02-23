@@ -9,11 +9,34 @@
 #include <stdlib.h>
 #include <time.h>
 
-Collection::Collection()
+#include <kdb>
+
+Collection::Collection(std::string profile)
 {
 	srand (time(0));
 
 	int r = (int) ((double)3*rand()/RAND_MAX);
+
+	kdb::KDB kdb;
+
+	kdb::Key root("user/sw/dfc", KEY_END);
+	root += profile;
+
+	kdb::KeySet config;
+	kdb.get(config, root);
+
+	std::cout << "root key is: " << root.name() << std::endl;
+
+	config.rewind();
+	std::cout << "size of config: " << config.size() << std::endl;
+	kdb::Key k;
+	while (k = config.next())
+	{
+		if (root.isBelow(k))
+			std::cout << k.name() << " value: "
+				<< k.getString()
+				<< std::endl;
+	}
 
 	switch (r)
 	{
