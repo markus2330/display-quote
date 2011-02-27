@@ -84,7 +84,19 @@ int random(int number)
 
 void Collection::getRandomQuote(std::ostream &os)
 {
+	if (archives.size() == 0)
+	{
+		os << "dfc error: No archive found";
+		return;
+	}
+
 	int a = random(archives.size());
+
+	if (archives[a]->size() == 0)
+	{
+		os << "dfc error: No quote in archive found";
+		return;
+	}
 
 	int r = random(archives[a]->size());
 

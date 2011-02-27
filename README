@@ -35,6 +35,19 @@ and install the package.
 
 == Usage ==
 
+
+First you have to add a new archive to one of the profiles
+for example:
+
+ dfc public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
+
+adds the archive with the name "dhamma" to the profile "public" using
+the type (of the database format) dhammapada.
+
+Note that currently the file name (path) must be absolute.
+Note that dfc currently is only able to add profiles to the
+user configuration.
+
  dfc
 
 The default output is one of the quotes of the default profile.
@@ -46,18 +59,6 @@ Allows you to output a quote from another profile.
 
 
  dfc <profile> <name of archive> <absolute file> <type of archive>
-
-Allows you to add a new archive to one of the profiles
-for example:
-
- dfc public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
-
-adds the archive with the name "dhamma" to the profile "public" using
-the type (of the database format) dhammapada.
-
-Note that currently the file name (path) must be absolute.
-Note that dfc currently is only able to add profiles to the
-user configuration.
 
 
 == Configuration ==
