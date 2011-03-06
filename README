@@ -42,7 +42,7 @@ for example:
  dfc public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
 
 adds the archive with the name "dhamma" to the profile "public" using
-the type (of the database format) dhammapada.
+the type (of the database format - see below) dhammapada.
 
 Note that currently the file name (path) must be absolute.
 Note that dfc currently is only able to add profiles to the
@@ -97,13 +97,22 @@ They will be called for reading the actual
 phrase out of the database.
 
 Currently supported are:
-dhammapada
+=== dhammapada ===
 Searches for a paragraph with a number in the end.
 Is fair without having an index.
 
-quotes
+=== quotes ===
 A line containing "%" and nothing else opens a new quote.
 
-paragraph
+=== paragraph ===
 Every paragraph is considered to be a quote.
 (An empty line starts a new quote.)
+
+=== lines ===
+Every line is considered to be a quote.
+Empty lines are ignored.
+
+== wiki ===
+Every Heading (lines starting with =) are considered
+to be the separator for quotes. This file itself is
+an example.

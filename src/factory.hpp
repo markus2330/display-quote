@@ -13,6 +13,8 @@
 #include <quotes.hpp>
 #include <paragraph.hpp>
 #include <dhammapada.hpp>
+#include <lines.hpp>
+#include <wiki.hpp>
 
 class Instancer
 {
@@ -44,6 +46,8 @@ public:
 		m_factory.insert(std::make_pair("dhammapada", new Cnstancer<Dhammapada>()));
 		m_factory.insert(std::make_pair("paragraph", new Cnstancer<Paragraph>()));
 		m_factory.insert(std::make_pair("quotes", new Cnstancer<Quotes>()));
+		m_factory.insert(std::make_pair("lines", new Cnstancer<Lines>()));
+		m_factory.insert(std::make_pair("wiki", new Cnstancer<Wiki>()));
 	}
 
 	~Factory()

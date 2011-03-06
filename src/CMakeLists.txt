@@ -1,6 +1,7 @@
 set (SOURCES collection.cpp collection.hpp archive.cpp archive.hpp
 	dhammapada.hpp dhammapada.cpp quotes.hpp quotes.cpp
-	paragraph.hpp paragraph.cpp)
+	paragraph.hpp paragraph.cpp lines.hpp lines.cpp
+	wiki.hpp wiki.cpp)
 
 include_directories (${Elektra_INCLUDE_DIR})
 include_directories (${PROJECT_SOURCE_DIR}/src)
