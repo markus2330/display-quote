@@ -7,11 +7,19 @@
 #include <cstdlib>
 #include <ctime>
 
+#ifdef NO_GETPID
+#include <unistd.h>
+#endif
+
 #include <kdb>
 
 Collection::Collection(std::string profile)
 {
-	srand (time(0));
+	srand (time(0)
+#ifdef NO_GETPID
+	       + getpid()
+#endif
+			);
 
 	kdb::KDB kdb;
 

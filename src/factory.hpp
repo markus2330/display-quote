@@ -15,6 +15,7 @@
 #include <dhammapada.hpp>
 #include <lines.hpp>
 #include <wiki.hpp>
+#include <task.hpp>
 
 class Instancer
 {
@@ -42,12 +43,14 @@ public:
 	Factory() :
 		m_factory()
 	{
-		// TODO: to add a new archive, 2.) add a line here  -> and you are done
 		m_factory.insert(std::make_pair("dhammapada", new Cnstancer<Dhammapada>()));
 		m_factory.insert(std::make_pair("paragraph", new Cnstancer<Paragraph>()));
 		m_factory.insert(std::make_pair("quotes", new Cnstancer<Quotes>()));
 		m_factory.insert(std::make_pair("lines", new Cnstancer<Lines>()));
 		m_factory.insert(std::make_pair("wiki", new Cnstancer<Wiki>()));
+		m_factory.insert(std::make_pair("task", new Cnstancer<Task>()));
+		// TODO: to add a new archive, 2.) add a line here
+		// TODO: 3.) add the sources to src/CMakeLists.txt-> and you are done
 	}
 
 	~Factory()

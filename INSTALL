@@ -1,6 +1,7 @@
 you need following packages:
  build-essential
  cmake
+ elektra-0.8
 
 then you need to do:
  mkdir build

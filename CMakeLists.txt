@@ -13,7 +13,7 @@ add_subdirectory(src)
 add_subdirectory(tool)
 
 set (CPACK_PACKAGE_NAME "dfc")
-set (CPACK_PACKAGE_VERSION "0.2")
+set (CPACK_PACKAGE_VERSION "0.3")
 set (CPACK_PACKAGE_DESCRIPTION_SUMMARY
 "display-from-collection (short: dfc) prints a text from a configured collection.")
 set (CPACK_PACKAGE_CONTACT "contact@markus-raab.org")

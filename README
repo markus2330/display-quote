@@ -65,7 +65,7 @@ Allows you to output a quote from another profile.
 
 The configuration is below:
 
-/sw/apps/dfc/
+/sw/dfc/
 
 in given profiles
 the default profile is default
@@ -81,14 +81,14 @@ for every file you must write an entry
 
 for every entry you can configure:
 1.) The name of the file to be used
-/sw/apps/dfc/profile/entry/path (type:path)
+/sw/dfc/profile/entry/path (type:path)
 
 2.) How often it should be picked (a larger number and it will be picked
 	more often)
-/sw/apps/dfc/profile/entry/contingency (type:integer)
+/sw/dfc/profile/entry/contingency (type:integer)
 
 3.) The format of the database: (dhammapada|quote)
-/sw/apps/dfc/profile/entry/type (type:enum)
+/sw/dfc/profile/entry/type (type:enum)
 
 == Databases ==
 
@@ -116,3 +116,6 @@ Empty lines are ignored.
 Every Heading (lines starting with =) are considered
 to be the separator for quotes. This file itself is
 an example.
+
+== task ==
+Like lines, but also lines with # are ignored.
