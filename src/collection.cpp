@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#ifdef NO_GETPID
+#ifndef NO_GETPID
 #include <unistd.h>
 #endif
 
@@ -16,7 +16,7 @@
 Collection::Collection(std::string profile)
 {
 	srand (time(0)
-#ifdef NO_GETPID
+#ifndef NO_GETPID
 	       + getpid()
 #endif
 			);
