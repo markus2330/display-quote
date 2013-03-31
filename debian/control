@@ -1,0 +1,16 @@
+Source: display-quote
+Section: misc
+Priority: extra
+Maintainer: Markus Raab <debian@markus-raab.org>
+Build-Depends: debhelper (>= 8.0.0), cmake, libelektra-dev
+Standards-Version: 3.9.3
+#Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/display-quote.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/display-quote.git;a=summary
+
+Package: display-quote
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: prints a text from a configured selection
+ Supports various database formats to be displayed.
+ Configuration happens using elektra instead of commandline switches.
