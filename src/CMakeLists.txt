@@ -3,9 +3,9 @@ set (SOURCES collection.cpp collection.hpp archive.cpp archive.hpp
 	paragraph.hpp paragraph.cpp lines.hpp lines.cpp
 	wiki.hpp wiki.cpp task.hpp task.cpp)
 
-include_directories (${Elektra_INCLUDE_DIR})
+include_directories (${ELEKTRA_INCLUDE_DIR})
 include_directories (${PROJECT_SOURCE_DIR}/src)
 add_library (fortune SHARED ${SOURCES})
-target_link_libraries (fortune ${Elektra_LIBRARIES})
+target_link_libraries (fortune ${ELEKTRA_LIBRARY})
 
 install (TARGETS fortune DESTINATION lib)

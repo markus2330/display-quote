@@ -11,7 +11,7 @@
 #include <unistd.h>
 #endif
 
-#include <kdb>
+#include <kdb.hpp>
 
 Collection::Collection(std::string profile)
 {

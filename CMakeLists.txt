@@ -12,13 +12,13 @@ endif (CMAKE_COMPILER_IS_GNUCXX)
 add_subdirectory(src)
 add_subdirectory(tool)
 
-set (CPACK_PACKAGE_NAME "dfc")
+set (CPACK_PACKAGE_NAME "dq")
 set (CPACK_PACKAGE_VERSION "0.3")
 set (CPACK_PACKAGE_DESCRIPTION_SUMMARY
-"display-from-collection (short: dfc) prints a text from a configured collection.")
+"display-quote (short: dq) prints a text from a configured collection.")
 set (CPACK_PACKAGE_CONTACT "contact@markus-raab.org")
 set (CPACK_SOURCE_IGNORE_FILES "/.gitignore")
-set (CPACK_PACKAGE_EXECUTABLES dfc)
+set (CPACK_PACKAGE_EXECUTABLES dq)
 
 set (CPACK_GENERATOR "DEB")
 set (CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
