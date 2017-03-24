@@ -1,3 +1,7 @@
+TODO: everything was changed from dq -> dfc
+conf does not work anymore
+
+
 == Introduction ==
 
 display-quote (short: dq) prints a
@@ -39,33 +43,33 @@ and install the package.
 First you have to add a new archive to one of the profiles
 for example:
 
- dfc public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
+ dq public dhamma /usr/share/doc/display-dhammapada/dhammapada-english-transl.txt dhammapada
 
 adds the archive with the name "dhamma" to the profile "public" using
 the type (of the database format - see below) dhammapada.
 
 Note that currently the file name (path) must be absolute.
-Note that dfc currently is only able to add profiles to the
+Note that dq currently is only able to add profiles to the
 user configuration.
 
- dfc
+ dq
 
 The default output is one of the quotes of the default profile.
 
 
- dfc <profile>
+ dq <profile>
 
 Allows you to output a quote from another profile.
 
 
- dfc <profile> <name of archive> <absolute file> <type of archive>
+ dq <profile> <name of archive> <absolute file> <type of archive>
 
 
 == Configuration ==
 
 The configuration is below:
 
-/sw/dfc/
+/sw/dq/
 
 in given profiles
 the default profile is default
@@ -81,14 +85,14 @@ for every file you must write an entry
 
 for every entry you can configure:
 1.) The name of the file to be used
-/sw/dfc/profile/entry/path (type:path)
+/sw/dq/profile/entry/path (type:path)
 
 2.) How often it should be picked (a larger number and it will be picked
 	more often)
-/sw/dfc/profile/entry/contingency (type:integer)
+/sw/dq/profile/entry/contingency (type:integer)
 
 3.) The format of the database: (dhammapada|quote)
-/sw/dfc/profile/entry/type (type:enum)
+/sw/dq/profile/entry/type (type:enum)
 
 == Databases ==
 

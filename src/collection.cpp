@@ -23,11 +23,9 @@ Collection::Collection(std::string profile)
 
 	kdb::KDB kdb;
 
-	kdb::Key userroot("user/sw/dfc", KEY_END);
-	userroot += profile;
+	kdb::Key userroot("user/sw/dq/" + profile, KEY_END);
 
-	kdb::Key sysroot("system/sw/dfc", KEY_END);
-	sysroot += profile;
+	kdb::Key sysroot("system/sw/dq/" + profile, KEY_END);
 
 	kdb::KeySet config;
 	kdb.get(config, userroot);
@@ -94,7 +92,7 @@ void Collection::getRandomQuote(std::ostream &os)
 {
 	if (archives.size() == 0)
 	{
-		os << "dfc error: No archive found";
+		os << "dq error: No archive found";
 		return;
 	}
 
@@ -102,7 +100,7 @@ void Collection::getRandomQuote(std::ostream &os)
 
 	if (archives[a]->size() == 0)
 	{
-		os << "dfc error: No quote in archive found";
+		os << "dq error: No quote in archive found";
 		return;
 	}
 

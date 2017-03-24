@@ -21,8 +21,7 @@ int main(int argc, char** argv)
 	{
 		kdb::KDB kdb;
 
-		kdb::Key root("user/sw/dfc", KEY_END);
-		root += argv[1];
+		kdb::Key root(std::string("user/sw/dq/") + argv[1], KEY_END);
 
 		kdb::KeySet config;
 		kdb.get (config, root);
@@ -35,20 +34,20 @@ int main(int argc, char** argv)
 		}
 
 		kdb::Key archive (root.dup());
-		archive += argv[2];
+		archive.addBaseName(argv[2]);
 		archive.setString ("Root key of archive");
 		config.append (archive);
 
 		kdb::Key path (archive.dup());
-		path += "path";
+		path.addBaseName("path");
 		path.setString(argv[3]);
 		config.append (path);
 
 		kdb::Key type (archive.dup());
-		type += "type";
+		type.addBaseName("type");
 		type.setString(argv[4]);
 		config.append (type);
 		kdb.set (config, root);
-		std::cout << "Add new archive below " << archive.name() << std::endl;
+		std::cout << "Add new archive below " << archive.getName() << std::endl;
 	}
 }

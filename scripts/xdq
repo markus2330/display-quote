@@ -16,9 +16,9 @@ then
 	esac
 	xmessage -font $font -title "$title" -background\
 	black -bordercolor yellow -foreground yellow -center\
-	-xrm '*maxWidth: 800' "`dfc $@`" &
+	-xrm '*maxWidth: 800' "`dq $@`" &
 else
 	tput bold || tput md
-	dfc  "$@"
+	dq  "$@"
 	tput sgr0 || tput me
 fi
