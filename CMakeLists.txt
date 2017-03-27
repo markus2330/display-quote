@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.6)
 find_package (Elektra REQUIRED)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
-	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++98 -Wall -Wextra -Wno-missing-field-initializers")
+	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -Wall -Wextra -Wno-missing-field-initializers")
 	message (STATUS "G++ detected, compile flags: ${CMAKE_CXX_FLAGS}")
 endif (CMAKE_COMPILER_IS_GNUCXX)
 
