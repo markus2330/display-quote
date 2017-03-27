@@ -1,7 +1,3 @@
-TODO: everything was changed from dq -> dfc
-conf does not work anymore
-
-
 == Introduction ==
 
 display-quote (short: dq) prints a
@@ -28,14 +24,15 @@ commandline switches.
 Make sure that you have elektra and cmake installed.
 Use cmake as usual:
 
- mkdir build
- cd build
- cmake ..
- make
- cpack
+    mkdir build
+    cd build
+    cmake ..
+    make
+    make install
 
-and install the package.
+or build the debian package with
 
+    git-buildpackage
 
 == Usage ==
 
@@ -69,7 +66,7 @@ Allows you to output a quote from another profile.
 
 The configuration is below:
 
-/sw/dq/
+/sw/elektra/dq/#0/
 
 in given profiles
 the default profile is default
@@ -85,14 +82,14 @@ for every file you must write an entry
 
 for every entry you can configure:
 1.) The name of the file to be used
-/sw/dq/profile/entry/path (type:path)
+/sw/elektra/dq/#0/profile/entry/path (type:path)
 
 2.) How often it should be picked (a larger number and it will be picked
 	more often)
-/sw/dq/profile/entry/contingency (type:integer)
+/sw/elektra/dq/#0/profile/entry/contingency (type:integer)
 
-3.) The format of the database: (dhammapada|quote)
-/sw/dq/profile/entry/type (type:enum)
+3.) The format of the database: (dhammapada|quote|paragraph|lines|wiki|task)
+/sw/elektra/dq/#0/profile/entry/type (type:enum)
 
 == Databases ==
 
