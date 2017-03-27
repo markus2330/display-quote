@@ -7,11 +7,32 @@
 #include <cstdlib>
 #include <ctime>
 
+#include <iostream>
+
 #ifndef NO_GETPID
 #include <unistd.h>
 #endif
 
 #include <kdb.hpp>
+
+kdb::Key removeNamespace (kdb::Key k)
+{
+	kdb::Key key = k.dup();
+	std::string name = key.getName ();
+	size_t pos = name.find_first_of ('/');
+	if (pos == std::string::npos)
+	{
+		// we directly had a namespace
+		key.setName ("/");
+	}
+	else
+	{
+		name = name.substr (pos);
+		key.setName (name);
+	}
+	return key;
+}
+
 
 Collection::Collection(std::string profile)
 {
@@ -23,36 +44,21 @@ Collection::Collection(std::string profile)
 
 	kdb::KDB kdb;
 
-	kdb::Key userroot("user/sw/dq/" + profile, KEY_END);
+	if (profile.empty()) profile = "current";
 
-	kdb::Key sysroot("system/sw/dq/" + profile, KEY_END);
+	kdb::Key root("/sw/elektra/dq/#0/" + profile + "/", KEY_END);
 
 	kdb::KeySet config;
-	kdb.get(config, userroot);
-	kdb.get(config, sysroot);
+	kdb.get(config, root);
 
 	Factory f;
 
 	config.rewind();
-	kdb::Key k;
-	while (k = config.next())
+	kdb::Key key;
+	while (key = config.next())
 	{
-		if (userroot.isDirectBelow(k))
-		{
-			kdb::Key path =
-				config.lookup (k.getName() + "/path");
-			if (!path) throw ("Archive without path found");
-
-			kdb::Key type =
-				config.lookup (k.getName() + "/type");
-			if (!type) throw ("Archive without type found");
-
-			std::auto_ptr<Archive> a =
-				f.get(type.getString(),
-				path.getString());
-			archives.push_back(a.release());
-		}
-		else if (sysroot.isDirectBelow(k))
+		kdb::Key k = removeNamespace(key);
+		if (k.isDirectBelow(root))
 		{
 			kdb::Key path =
 				config.lookup (k.getName() + "/path");
