@@ -33,9 +33,6 @@ class Cnstancer: public Instancer
 	}
 };
 
-struct UnknownArchive : std::exception
-{};
-
 class Factory
 {
 	std::map<std::string, Instancer*> m_factory;
@@ -92,7 +89,7 @@ public:
 		else
 		{
 			m_factory.erase(which);
-			throw UnknownArchive();
+			throw std::runtime_error("Unknown archive type " + which);
 		}
 
 	}

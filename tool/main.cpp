@@ -3,7 +3,7 @@
 
 #include <kdb.hpp>
 
-int main(int argc, char** argv)
+int main(int argc, char** argv) try
 {
 	if (argc == 1)
 	{
@@ -51,3 +51,8 @@ int main(int argc, char** argv)
 		std::cout << "Add new archive below " << archive.getName() << std::endl;
 	}
 }
+catch (std::exception const & e)
+{
+	std::cerr << e.what() << std::endl;
+}
+

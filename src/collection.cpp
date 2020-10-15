@@ -62,11 +62,11 @@ Collection::Collection(std::string profile)
 		{
 			kdb::Key path =
 				config.lookup (k.getName() + "/path");
-			if (!path) throw ("Archive without path found");
+			if (!path) throw std::runtime_error("Archive without path found below " + k.getName());
 
 			kdb::Key type =
 				config.lookup (k.getName() + "/type");
-			if (!type) throw ("Archive without type found");
+			if (!type) throw std::runtime_error("Archive without type found below " + k.getName());
 
 			std::auto_ptr<Archive> a =
 				f.get(type.getString(),
