@@ -21,7 +21,7 @@ int main(int argc, char** argv) try
 	{
 		kdb::KDB kdb;
 
-		kdb::Key root(std::string("user/sw/elektra/dq/#0/") + argv[1], KEY_END);
+		kdb::Key root(std::string("/sw/elektra/dq/#0/") + argv[1], KEY_END);
 
 		kdb::KeySet config;
 		kdb.get (config, root);
